@@ -1,0 +1,6 @@
+%h1 Оперативная информация
+%table
+  - @operative_records.each do |record|
+    %tr
+      %td= record.target_day
+      %td= "#{record.registry_emergency_count}-#{record.dead_count}-#{record.perished_count}"
