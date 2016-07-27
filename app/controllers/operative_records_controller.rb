@@ -35,10 +35,13 @@ class OperativeRecordsController < ApplicationController
   private
 
   def operative_record_params
-    params.require(:operative_record).permit(:target_day, :registry_emergency_count, :dead_count, :perished_count, :adm_emergency_count, :all_violations_count,
+    params.require(:operative_record).permit(:target_day, :registry_emergency_count, :dead_count, 
+                                             :perished_count, :adm_emergency_count, :personal_count, :all_violations_count,
                                              :drunk_count, :opposite_count, :not_having_count, :speed_count, :failure_to_footer_count,
                                              :belts_count, :passengers_count, :tinting_count, :footer_count, :arested_day_count, :arested_all_count,
-                                             :parking_count, :article_264_1_count, :oop_count, :solved_crime_count)
+                                             :parking_count, :article_264_1_count, :oop_count, :solved_crime_count,
+                                             :stealing_autos, :theft_autos, :stealing_sloved, :theft_sloved, :stealing_sloved_gibdd, :theft_sloved_gibdd,
+                                             :district_code)
   end
 
 end

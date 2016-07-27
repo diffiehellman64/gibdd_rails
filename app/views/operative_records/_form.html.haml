@@ -1,26 +1,153 @@
-= simple_form_for(@operative_record) do |f|
-  = f.input :target_day, autofocus: true
+= simple_form_for @operative_record, html: { class: 'form-horizontal' } do |f|
+  .row
+    .col-sm-4
 
+      %h2{'align': 'right'} Общие сведения
 
-  = f.input :registry_emergency_count
-  = f.input :dead_count
-  = f.input :perished_count
-  = f.input :adm_emergency_count
-  = f.input :all_violations_count
-  = f.input :drunk_count
-  = f.input :opposite_count
-  = f.input :not_having_count
-  = f.input :speed_count
-  = f.input :failure_to_footer_count
-  = f.input :belts_count
-  = f.input :passengers_count
-  = f.input :tinting_count
-  = f.input :footer_count
-  = f.input :arested_day_count
-  = f.input :arested_all_count
-  = f.input :parking_count
-  = f.input :article_264_1_count
-  = f.input :oop_count
-  = f.input :solved_crime_count
+      .form-group
+        = f.label :target_day, class: 'control-label col-sm-8'
+        .col-sm-4
+          = f.input_field :target_day, as: :string, class: 'form-control', value: Date.yesterday.strftime('%d.%m.%Y')  
+  
+      .form-group
+        = f.label :district_code, class: 'control-label col-sm-9 small'
+        .col-sm-3
+          = f.input_field :district_code, as: :string, class: 'form-control input-sm'
 
-  = f.button :submit
+      .form-group
+        = f.label :personal_count, class: 'control-label col-sm-9 small'
+        .col-sm-3
+          = f.input_field :personal_count, as: :string, class: 'form-control input-sm'
+
+      .form-group
+        = f.label :registry_emergency_count, class: 'control-label col-sm-9 small'
+        .col-sm-3
+          = f.input_field :registry_emergency_count, as: :string, class: 'form-control input-sm'
+
+      .form-group
+        = f.label :dead_count, class: 'control-label col-sm-9 small'
+        .col-sm-3
+          = f.input_field :dead_count, as: :string, class: 'form-control input-sm'
+
+      .form-group
+        = f.label :perished_count, class: 'control-label col-sm-9 small'
+        .col-sm-3
+          = f.input_field :perished_count, as: :string, class: 'form-control input-sm'
+
+      .form-group
+        = f.label :adm_emergency_count, class: 'control-label col-sm-9 small'
+        .col-sm-3
+          = f.input_field :adm_emergency_count, as: :string, class: 'form-control input-sm'
+
+      %br
+      %br
+
+      %h2{'align': 'right'} Уголовная практика
+
+      .form-group
+        = f.label :solved_crime_count, class: 'control-label col-sm-9 small'
+        .col-sm-3
+          = f.input_field :solved_crime_count, as: :string, class: 'form-control input-sm'
+
+      .form-group
+        = f.label :article_264_1_count, class: 'control-label col-sm-9 small'
+        .col-sm-3
+          = f.input_field :article_264_1_count, as: :string, class: 'form-control input-sm'
+
+      %br
+      %h5{'align': 'center'} Сведения об угонах и кражах транспортных средств
+
+      %table.table.table-condensed.table-bordered
+        %th
+          %td{'valign': 'middle', 'align': 'center', 'class': 'small' } Совершено
+          %td{'valign': 'middle', 'align': 'center', 'class': 'small' } Обнаружено
+          %td{'valign': 'middle', 'align': 'center', 'class': 'small' } Обнаружено ГИБДД
+        %tr
+          %td.small Угоны
+          %td= f.input_field :stealing_autos, as: :string, class: 'form-control input-sm'
+          %td= f.input_field :stealing_sloved, as: :string, class: 'form-control input-sm'
+          %td= f.input_field :stealing_sloved_gibdd, as: :string, class: 'form-control input-sm'
+        %tr
+          %td.small Кражи
+          %td= f.input_field :theft_autos, as: :string, class: 'form-control input-sm'
+          %td= f.input_field :theft_sloved, as: :string, class: 'form-control input-sm'
+          %td= f.input_field :theft_sloved_gibdd, as: :string, class: 'form-control input-sm'
+
+    .col-sm-6
+
+      %h2{'align': 'right'} Административная практика
+
+      .form-group
+        = f.label :all_violations_count, class: 'control-label col-sm-9 small'
+        .col-sm-3
+          = f.input_field :all_violations_count, as: :string, class: 'form-control input-sm'
+
+      .form-group
+        = f.label :drunk_count, class: 'control-label col-sm-9 small'
+        .col-sm-3
+          = f.input_field :drunk_count, as: :string, class: 'form-control input-sm'
+
+      .form-group
+        = f.label :opposite_count, class: 'control-label col-sm-9 small'
+        .col-sm-3
+          = f.input_field :opposite_count, as: :string, class: 'form-control input-sm'
+
+      .form-group
+        = f.label :not_having_count, class: 'control-label col-sm-9 small'
+        .col-sm-3
+          = f.input_field :not_having_count, as: :string, class: 'form-control input-sm'
+
+      .form-group
+        = f.label :speed_count, class: 'control-label col-sm-9 small'
+        .col-sm-3
+          = f.input_field :speed_count, as: :string, class: 'form-control input-sm'
+
+      .form-group
+        = f.label :failure_to_footer_count, class: 'control-label col-sm-9 small'
+        .col-sm-3
+          = f.input_field :failure_to_footer_count, as: :string, class: 'form-control input-sm'
+
+      .form-group
+        = f.label :belts_count, class: 'control-label col-sm-9 small'
+        .col-sm-3
+          = f.input_field :belts_count, as: :string, class: 'form-control input-sm'
+
+      .form-group
+        = f.label :passengers_count, class: 'control-label col-sm-9 small'
+        .col-sm-3
+          = f.input_field :passengers_count, as: :string, class: 'form-control input-sm'
+
+      .form-group
+        = f.label :tinting_count, class: 'control-label col-sm-9 small'
+        .col-sm-3
+          = f.input_field :tinting_count, as: :string, class: 'form-control input-sm'
+
+      .form-group
+        = f.label :footer_count, class: 'control-label col-sm-9 small'
+        .col-sm-3
+          = f.input_field :footer_count, as: :string, class: 'form-control input-sm'
+
+      .form-group
+        = f.label :arested_day_count, class: 'control-label col-sm-9 small'
+        .col-sm-3
+          = f.input_field :arested_day_count, as: :string, class: 'form-control input-sm'
+
+      .form-group
+        = f.label :arested_all_count, class: 'control-label col-sm-9 small'
+        .col-sm-3
+          = f.input_field :arested_all_count, as: :string, class: 'form-control input-sm'
+
+      .form-group
+        = f.label :parking_count, class: 'control-label col-sm-9 small'
+        .col-sm-3
+          = f.input_field :parking_count, as: :string, class: 'form-control input-sm'
+
+      .form-group
+        = f.label :oop_count, class: 'control-label col-sm-9 small'
+        .col-sm-3
+          = f.input_field :oop_count, as: :string, class: 'form-control input-sm'
+  %br 
+  .row
+    .col-sm-3
+    .col-sm-3
+      = f.button :submit

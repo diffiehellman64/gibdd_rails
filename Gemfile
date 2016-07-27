@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+gem 'bootstrap-sass'
+#gem 'momentjs-rails'
+#gem 'bootstrap3-datetimepicker-rails'
 
 gem 'simple_form'
 gem 'postgresql'
