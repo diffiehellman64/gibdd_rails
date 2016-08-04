@@ -1,3 +1,82 @@
 // Place all the styles related to the operative_records controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+table {
+  font-size: 10px;
+  vertical-align: middle;
+}
+
+td {
+  text-align: center;
+  vertical-align: middle;
+//  max-width: 40px;
+}
+
+.table-bordered > tbody > tr > td {
+  border: 1px solid black;
+}
+
+td.rotate {
+  /* Something you can count on */
+  height: 160px;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+td.rotate > div {
+  transform: 
+    /* Magic Numbers */
+    translate(0, 100px)
+    /* 45 is really 360 - 45 */
+    rotate(270deg);
+  width: 15px;
+}
+td.rotate > div > span {
+  padding: 5px 0px;
+}
+
+td.rotate-big {
+  /* Something you can count on */
+  height: 160px;
+  white-space: nowrap;
+  vertical-align: middle;
+  width: 5px;
+}
+
+td.rotate-big > div {
+  transform:
+    /* Magic Numbers */
+    translate(0, 130px)
+    /* 45 is really 360 - 45 */
+    rotate(270deg);
+  width: 45px;
+}
+td.rotate-big > div > span {
+  padding: 5px 0px;
+}
+
+tbody > tr > td.rotate-sm {
+  padding: 0;
+}
+
+td.rotate-sm {
+  /* Something you can count on */
+  height: 85px;
+  white-space: nowrap;
+  vertical-align: middle;
+  width: 5px;
+}
+
+td.rotate-sm > div {
+  transform:
+    /* Magic Numbers */
+    translate(0, 50px)
+    /* 45 is really 360 - 45 */
+    rotate(270deg);
+  width: 15px;
+}
+td.rotate-sm > div > span {
+  padding: 5px 0px;
+}
+

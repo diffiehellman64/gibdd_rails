@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   
-  resources :operative_records
+  resources :operative_records, only: [:index, :new, :create, :edit, :update, :destroy]
+  post 'operative_records/validate' => 'operative_records#validate'
+  get  'operative_records/all/:target_day' => 'operative_records#all', as: 'all_operative_records'
  # resources :stealing_autos
 
   # Example resource route with options:

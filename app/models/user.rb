@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
 
+  belongs_to :district
   has_many :operative_record
 
   # Virtual attribute for authenticating by either username or email

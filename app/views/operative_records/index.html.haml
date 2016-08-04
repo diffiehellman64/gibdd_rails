@@ -1,6 +1,73 @@
-%h1 Оперативная информация
-%table
-  - @operative_records.each do |record|
+%h1 Оперативные сведения
+%h2= @district.name
+%table.table.table-bordered 
+  %tr
+    %td{ rowspan: 3 } Сутки
+    %td{ colspan: 4 } ДТП
+    %td{ class: 'rotate', rowspan: 3 }
+      %div
+        %span Задействовано л/с
+    %td{ colspan: 13 } Исполнение административных процедур при контроле за дорожным движением
+    %td{ class: 'rotate-big', rowspan: 3, colspan: 2 }
+      %div
+        %span Кол-во ТС пост. на спец. <br> а/стоянки за нарушение <br> ПДД в области ОБДД
+  %tr
+    %td{ class: 'rotate', rowspan: 2 }
+      %div
+        %span  Всего с пострад.
+    %td{ class: 'rotate', rowspan: 2 }
+      %div
+        %span Погибло
+    %td{ class: 'rotate', rowspan: 2 }
+      %div
+        %span Ранено
+    %td{ class: 'rotate', rowspan: 2 }
+      %div
+        %span С мат.ущербом
+    %td{ rowspan: 2 } Всего  
+    %td Н/с
+    %td Выезд на встречную
+    %td Неимеющ. права упр. или лиш.
+    %td Скорость
+    %td Непредост. преим. пешех.
+    %td Ремни безопасн.
+    %td Перевозка пассажир.
+    %td Тонировка
+    %td Пешеходы
+    %td{ rowspan: 2 } Прочие  
+    %td{ colspan: 2 } Кол-во граждан подвергнутых админ. аресту за нарушение ПДД в области ОБДД
+  %tr
+    %td 12.8, 12.26
+    %td 12.15 ч.4, 12.16 ч.3
+    %td 12.7
+    %td 12.9
+    %td 12.18
+    %td 12.6
+    %td 12.23
+    %td 12.5 ч.3.1
+    %td 12.29, 12.30
+    %td за сутки
+    %td всего
+
+  - @operative_records.each do |r|
     %tr
-      %td= record.target_day
-      %td= "#{record.registry_emergency_count}-#{record.dead_count}-#{record.perished_count}"
+      %td= link_to r.target_day, edit_operative_record_path(r)
+      %td= r.registry_emergency_count
+      %td= r.dead_count
+      %td= r.perished_count
+      %td= r.adm_emergency_count
+      %td= r.personal_count
+      %td= r.all_violations_count
+      %td= r.drunk_count
+      %td= r.opposite_count
+      %td= r.not_having_count
+      %td= r.speed_count
+      %td= r.failure_to_footer_count 
+      %td= r.belts_count
+      %td= r.passengers_count
+      %td= r.tinting_count
+      %td= r.footer_count
+      %td
+      %td= r.arested_day_count
+      %td= r.arested_all_count
+      %td= r.parking_count

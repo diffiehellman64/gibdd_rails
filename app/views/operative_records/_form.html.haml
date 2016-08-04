@@ -1,23 +1,46 @@
-= simple_form_for @operative_record, html: { class: 'form-horizontal' } do |f|
+= simple_form_for @operative_record, remote: true, html: { class: 'form-horizontal' } do |f|
+  - @operative_record.errors.full_messages.each do |msg|
+    %p= msg
   .row
-    .col-sm-4
+    .col-sm-5
 
       %h2{'align': 'right'} Общие сведения
 
       .form-group
         = f.label :target_day, class: 'control-label col-sm-8'
         .col-sm-4
-          = f.input_field :target_day, as: :string, class: 'form-control', value: Date.yesterday.strftime('%d.%m.%Y')  
-  
+          - if params[:action] == "edit"
+            = @operative_record.target_day.strftime("%d.%m.%Y") 
+          - else
+            - dis_dates = ''
+            - @saved_operative_records.each do |r|
+              - dis_dates = dis_dates + r.target_day.strftime('%d%m%Y') + '|' 
+            = f.input_field :target_day, as: :string, class: 'form-control', dis_dates: "#{dis_dates}"
+           
+ 
       .form-group
-        = f.label :district_code, class: 'control-label col-sm-9 small'
-        .col-sm-3
-          = f.input_field :district_code, as: :string, class: 'form-control input-sm'
-
+        = f.label :district_id, class: 'control-label col-sm-4 small'
+        .col-sm-8
+          - if current_user.district_id.between?(1, 20) 
+            = @districts[current_user.district_id - 1].name
+          - else
+            = f.input :district_id,
+                      collection: @districts,
+                      label_method: :name, 
+                      value_method: :id, 
+                      label: false,
+                      include_blank: false,
+                      selected: current_user.district_id
+ 
       .form-group
         = f.label :personal_count, class: 'control-label col-sm-9 small'
         .col-sm-3
           = f.input_field :personal_count, as: :string, class: 'form-control input-sm'
+
+      %br
+      %br
+
+      %h2{'align': 'right'} Информация о ДТП
 
       .form-group
         = f.label :registry_emergency_count, class: 'control-label col-sm-9 small'

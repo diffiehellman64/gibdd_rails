@@ -5,9 +5,24 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+ # rescue_from CanCan::AccessDenied do |exception|
+ #   render status: :forbidden, text: "Forbidden </br> #{exception.message}"
+ # end
+
   rescue_from CanCan::AccessDenied do |exception|
-    render status: :forbidden, text: "Forbidden </br> #{exception.message}"
+    if request.headers['X-PJAX'] # pjax
+      render_403 exception.message
+    elsif request.xhr? # ajax
+      render status: :forbidden, text: 'Forbidden'
+    else 
+      redirect_to main_app.root_path, flash: { danger: "<strong>#{t('errors.forbidden')}:</strong> #{exception.message}" }
+    end
   end
+
+  def pjax_redirect_to(url, container = '[pjax-container]')
+    render js: "$.pjax({url: '#{url}', container: '#{container}'});"
+  end
+
 
   protected
 

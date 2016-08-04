@@ -1,1 +1,24 @@
 ru:
+  views:
+    operative_records:
+      new:
+        title: 'Добавление оперативной информации за сутки'
+      edit:
+        title: 'Редактирование оперативной информации за сутки'
+  activerecord:
+    attributes:
+      operative_record:
+        target_day: 'Сутки'
+        dead_count: 'Количество погибших'
+        day_district: 'Данные подразделения за выбранные сутки'
+    errors:
+      models:
+        operative_record:
+          attributes:
+            target_day: 
+              invalid: 'введены некорректно'
+              taken: 'уже переданы'
+            day_district: 
+              taken: 'уже переданы'
+            dead_count:
+              not_a_number: 'должно быть натуральным числом'

@@ -3,19 +3,26 @@ class Ability
 
   def initialize(user)
 
-    alias_action :index, :show, :new, :edit, :create, :update, :destroy, to: :all
+    alias_action :index, :show, :new, :edit, :create, :update, :destroy, :validate, :all, to: :all_privileges
     alias_action :new, :edit, :create, :update, to: :create_edit
+    alias_action :edit, :update, to: :edit_update
     alias_action :index, :show, to: :read
     
     user ||= User.new # guest user (not logged in)
 
 
     if user.has_role? :admin
-      can :all, OperativeRecord
+      can :all_privileges, OperativeRecord
       
-    elsif user.has_role? :operatve_duty
-      can :create_edit, OperativeRecord
+    elsif user.has_role? :operative_duty
+      can :create, OperativeRecord
+      can :index, OperativeRecord
+      can :validate, OperativeRecord
+      can :all, OperativeRecord
 
+      can :edit_update, OperativeRecord do |rec|
+        rec.try(:district_id) == user.district_id
+      end
     # Guest
     else
       #can :read, OperativeRecord

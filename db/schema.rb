@@ -11,44 +11,52 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160721205456) do
+ActiveRecord::Schema.define(version: 20160801175846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "districts", force: :cascade do |t|
+    t.integer  "code",       null: false
+    t.string   "name",       null: false
+    t.string   "short_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "operative_records", force: :cascade do |t|
-    t.integer  "user_id",                  null: false
-    t.date     "target_day",               null: false
-    t.integer  "personal_count",           null: false
-    t.integer  "registry_emergency_count", null: false
-    t.integer  "dead_count",               null: false
-    t.integer  "perished_count",           null: false
-    t.integer  "adm_emergency_count",      null: false
-    t.integer  "all_violations_count",     null: false
-    t.integer  "drunk_count",              null: false
-    t.integer  "opposite_count",           null: false
-    t.integer  "not_having_count",         null: false
-    t.integer  "speed_count",              null: false
-    t.integer  "failure_to_footer_count",  null: false
-    t.integer  "belts_count",              null: false
-    t.integer  "passengers_count",         null: false
-    t.integer  "tinting_count",            null: false
-    t.integer  "footer_count",             null: false
-    t.integer  "arested_day_count",        null: false
-    t.integer  "arested_all_count",        null: false
-    t.integer  "parking_count",            null: false
-    t.integer  "article_264_1_count",      null: false
-    t.integer  "oop_count",                null: false
-    t.integer  "solved_crime_count",       null: false
-    t.integer  "stealing_autos",           null: false
-    t.integer  "theft_autos",              null: false
-    t.integer  "stealing_sloved",          null: false
-    t.integer  "theft_sloved",             null: false
-    t.integer  "stealing_sloved_gibdd",    null: false
-    t.integer  "theft_sloved_gibdd",       null: false
-    t.integer  "district_code",            null: false
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.integer  "user_id",                  default: 0, null: false
+    t.integer  "district_id",                          null: false
+    t.date     "target_day",                           null: false
+    t.integer  "personal_count"
+    t.integer  "registry_emergency_count"
+    t.integer  "dead_count"
+    t.integer  "perished_count"
+    t.integer  "adm_emergency_count"
+    t.integer  "all_violations_count"
+    t.integer  "drunk_count"
+    t.integer  "opposite_count"
+    t.integer  "not_having_count"
+    t.integer  "speed_count"
+    t.integer  "failure_to_footer_count"
+    t.integer  "belts_count"
+    t.integer  "passengers_count"
+    t.integer  "tinting_count"
+    t.integer  "footer_count"
+    t.integer  "arested_day_count"
+    t.integer  "arested_all_count"
+    t.integer  "parking_count"
+    t.integer  "article_264_1_count"
+    t.integer  "oop_count"
+    t.integer  "solved_crime_count"
+    t.integer  "stealing_autos"
+    t.integer  "theft_autos"
+    t.integer  "stealing_sloved"
+    t.integer  "theft_sloved"
+    t.integer  "stealing_sloved_gibdd"
+    t.integer  "theft_sloved_gibdd"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
 
   create_table "roles", force: :cascade do |t|
@@ -63,12 +71,12 @@ ActiveRecord::Schema.define(version: 20160721205456) do
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
+    t.integer  "district_id"
+    t.string   "email"
     t.string   "encrypted_password",     default: "", null: false
     t.string   "username"
     t.string   "fullname"
     t.string   "discription"
-    t.integer  "district_code"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
