@@ -62,14 +62,25 @@ class OperativeRecordsController < ApplicationController
 
   def all
     if params[:target_day] == 'now'
-#      @target_day =  DateTime.now
+      # @target_day =  DateTime.now
       @target_day =  DateTime.yesterday
     else
       @target_day = DateTime.strptime(params[:target_day], '%d%m%Y')
     end
-    @districts = District.all
-#    @districts
-    @operative_records = OperativeRecord.where(target_day:  @target_day)
+    #td = DateTime.strptime('03082016', '%d%m%Y')
+#    @districts = District.all
+#    @oper_records = OperativeRecord.where(operative_records:{target_day: @target_day})
+    @records = District.joins(:operative_record)
+                       .select('districts.*, operative_records.*')
+                       .where(operative_records:{target_day: @target_day})
+                       .order(:id)
+#    @records = District.joins('LEFT JOIN operative_records ON districts.id = operative_records.district_id')
+#                       .select('districts.*, operative_records.*')
+#                       .where('operative_records.target_day = ?', @target_day)
+                      # .order('district.id')
+    #                joins("LEFT JOIN student_enrollments ON courses.id = student_enrollments.course_id")
+    #recs = District.includes(:operative_record).where(operative_records:{target_day: @target_day})
+    #@operative_records = OperativeRecord.where(target_day:  @target_day)
   end
 
   def validate

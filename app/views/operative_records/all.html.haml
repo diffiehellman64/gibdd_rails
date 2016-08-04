@@ -142,12 +142,12 @@
       %div
         %span За месяц
 
-  - @operative_records.each do |r|
+  - @records.each do |r|
     %tr
       - if r.district_id == current_user.district_id
-        %td= link_to @districts[r.district_id - 1].name,  edit_operative_record_path(r)
+        %td= link_to r.short_name,  edit_operative_record_path(r)
       - else
-        %td= @districts[r.district_id - 1].name
+        %td= r.short_name
       %td= r.registry_emergency_count
       %td= r.dead_count
       %td= r.perished_count
@@ -181,5 +181,5 @@
       %td
       %td= r.arested_day_count
       %td= r.arested_all_count
-      %td= r. parking_count
+      %td= r.parking_count
       %td

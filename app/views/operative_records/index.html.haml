@@ -51,7 +51,7 @@
 
   - @operative_records.each do |r|
     %tr
-      %td= link_to r.target_day, edit_operative_record_path(r)
+      %td= link_to r.target_day.strftime("%d.%m.%Y"), edit_operative_record_path(r)
       %td= r.registry_emergency_count
       %td= r.dead_count
       %td= r.perished_count
@@ -67,7 +67,7 @@
       %td= r.passengers_count
       %td= r.tinting_count
       %td= r.footer_count
-      %td
+      %td= r.all_violations_count - ( r.drunk_count + r.opposite_count + r.not_having_count + r.speed_count + r.failure_to_footer_count + r.belts_count + r.passengers_count + r.tinting_count + r.footer_count )
       %td= r.arested_day_count
       %td= r.arested_all_count
       %td= r.parking_count
