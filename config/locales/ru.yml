@@ -1,4 +1,9 @@
 ru:
+  devise:
+    sessions:
+      user:
+        signed_in: 'Вход выполнен!'
+        signed_out: 'Выход выполнен!'
   views:
     operative_records:
       new:

@@ -31,4 +31,8 @@ class User < ActiveRecord::Base
   # Only allow letter, number, underscore and punctuation.
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
 
+  def ugibdd_duty?
+    self.has_role? :ugibdd_duty
+  end
+  
 end

@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :operative_records, only: [:index, :new, :create, :edit, :update, :destroy]
   post 'operative_records/validate' => 'operative_records#validate'
   get  'operative_records/all/:target_day' => 'operative_records#all', as: 'all_operative_records'
+  get  'operative_records/new/:district_id/:target_day' => 'operative_records#new', as: 'new_operative_record_by'
  # resources :stealing_autos
 
   # Example resource route with options:

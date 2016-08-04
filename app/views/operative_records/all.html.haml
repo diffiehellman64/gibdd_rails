@@ -1,7 +1,10 @@
 %h1 Оперативные сведения по Республке Коми
-%h2= @target_day.strftime('%d.%m.%Y')
+.row
+  .col-md-9
+    %h2= @target_day.strftime('%d.%m.%Y')
+  .col-md-3{ id: 'target_day_selector' }
 
-%table.table.table-bordered 
+%table.table.table-bordered{ id: 'operative_data_for_day' } 
   %tr
     %td{ rowspan: 4 } Территориальные органы МВД России на районном уровне в Республике Коми
     %td{ colspan: 8 } ДТП
@@ -144,8 +147,11 @@
 
   - @records.each do |r|
     %tr
-      - if r.district_id == current_user.district_id
-        %td= link_to r.short_name,  edit_operative_record_path(r)
+      - if r.d_id == current_user.district_id || current_user.ugibdd_duty?
+        - if r.target_day.nil?
+          %td= link_to r.short_name, new_operative_record_by_path(r.d_id, @target_day.strftime('%d%m%Y'))
+        - else
+          %td= link_to r.short_name, edit_operative_record_path(r)
       - else
         %td= r.short_name
       %td= r.registry_emergency_count

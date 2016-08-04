@@ -17,6 +17,34 @@ ready = ->
       # useCurrent: false
       # defaultDate: moment('31072016', "DDMMYYYY")
 
+  re = /\/operative_records\/all\/*/i
+  if window.location.pathname.match(re) != null
+    $('#target_day_selector').datetimepicker 
+      format: 'DD.MM.YYYY'
+      locale: 'ru'
+      keepOpen: true
+      inline: true
+     # sideBySide: true
+      maxDate: moment().subtract(1, 'days')
+     # minDate: moment().subtract(1, 'months')
+     # useCurrent: false
+
+    console.log $('#target_day_selector').val()
+    #$('#target_day_selector').click ->
+    $('body').on('change', '#target_day_selector', ( ->
+      console.log $('#target_day_selector').val()
+      $.ajax '/operative_records/all/' + $('#target_day_selector').val().split('.').join(''),
+        type: 'GET'
+        error: (jqXHR) ->
+          console.log jqXHR.status
+          #showAppMessage('<strong>Error:</strong> ' + jqXHR.status, 'danger');
+        success: (jqXHR) ->
+          console.log jqXHR.status
+          #showAppMessage('<strong>Error:</strong> ' + jqXHR.status, 'success');
+          #$(version_tr).fadeOut(200)
+          #showAppMessage('<strong>Success!</strong> Version deleted!', 'success');
+    ))
+
 #  re = /\/operative_records\/\d\/edit/i
 #  if window.location.pathname == '/operative_records/new' || window.location.pathname.match(re) != null
 #    onkeyup_var = true

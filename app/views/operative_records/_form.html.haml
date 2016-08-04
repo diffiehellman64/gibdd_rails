@@ -9,28 +9,31 @@
       .form-group
         = f.label :target_day, class: 'control-label col-sm-8'
         .col-sm-4
-          - if params[:action] == "edit"
-            = @operative_record.target_day.strftime("%d.%m.%Y") 
+          - if !@operative_record.target_day.nil?
+            = f.input_field :target_day, as: :string, class: 'form-control', value: @operative_record.target_day.strftime('%d.%m.%Y'), readonly: true
           - else
             - dis_dates = ''
             - @saved_operative_records.each do |r|
               - dis_dates = dis_dates + r.target_day.strftime('%d%m%Y') + '|' 
             = f.input_field :target_day, as: :string, class: 'form-control', dis_dates: "#{dis_dates}"
            
- 
       .form-group
         = f.label :district_id, class: 'control-label col-sm-4 small'
         .col-sm-8
           - if current_user.district_id.between?(1, 20) 
-            = @districts[current_user.district_id - 1].name
+            = f.input_field :district_id, as: :string, class: 'form-control', value: @districts[current_user.district_id - 1].name, readonly: true
           - else
+            - if params[:district_id].nil?
+              - sel_dis = current_user.district_id
+            - else
+              - sel_dis = params[:district_id]
             = f.input :district_id,
-                      collection: @districts,
-                      label_method: :name, 
-                      value_method: :id, 
-                      label: false,
-                      include_blank: false,
-                      selected: current_user.district_id
+                        collection: @districts,
+                        label_method: :name, 
+                        value_method: :id, 
+                        label: false,
+                        include_blank: false,
+                        selected: sel_dis
  
       .form-group
         = f.label :personal_count, class: 'control-label col-sm-9 small'
