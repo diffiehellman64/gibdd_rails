@@ -1,191 +1,196 @@
 %h1 Оперативные сведения по Республке Коми
 .row
-  .col-md-9
-    %h2= @target_day.strftime('%d.%m.%Y')
   .col-md-3{ id: 'target_day_selector' }
-
-%table.table.table-bordered{ id: 'operative_data_for_day' } 
-  %tr
-    %td{ rowspan: 4 } Территориальные органы МВД России на районном уровне в Республике Коми
-    %td{ colspan: 8 } ДТП
-    %td{ class: 'rotate', rowspan: 4 }
-      %div
-        %span Задействовано л/с
-    %td{ colspan: 24 } Исполнение административных процедур при контроле за дорожным движением
-    %td{ class: 'rotate-big', rowspan: 3, colspan: 2 }
-      %div
-        %span Кол-во ТС пост. на спец. <br> а/стоянки за нарушение <br> ПДД в области ОБДД
-  %tr
-    %td{ colspan: 4 } За сутки
-    %td{ colspan: 4 } За месяц
-    %td{ rowspan: 2, colspan: 2 } Всего  
-    %td{ colspan: 2 } Н/с
-    %td{ colspan: 2 } Выезд на встречную
-    %td{ colspan: 2 } Неимеющ. права упр. или лиш.
-    %td{ colspan: 2 } Скорость
-    %td{ colspan: 2 } Непредост. преим. пешех.
-    %td{ colspan: 2 } Ремни безопасн.
-    %td{ colspan: 2 } Перевозка пассажир.
-    %td{ colspan: 2 } Тонировка
-    %td{ colspan: 2 } Пешеходы
-    %td{ rowspan: 2, colspan: 2 } Прочие  
-    %td{ rowspan: 2, colspan: 2 } Кол-во граждан подвергнутых админ. аресту за нарушение ПДД в области ОБДД
-  %tr
-    %td{ class: 'rotate', rowspan: 2 }
-      %div
-        %span  Всего с пострад.
-    %td{ class: 'rotate', rowspan: 2 }
-      %div
-        %span Погибло
-    %td{ class: 'rotate', rowspan: 2 }
-      %div
-        %span Ранено
-    %td{ class: 'rotate', rowspan: 2 }
-      %div
-        %span С мат.ущербом
-    %td{ class: 'rotate', rowspan: 2 }
-      %div
-        %span  Всего с пострад.
-    %td{ class: 'rotate', rowspan: 2 }
-      %div
-        %span Погибло
-    %td{ class: 'rotate', rowspan: 2 }
-      %div
-        %span Ранено
-    %td{ class: 'rotate', rowspan: 2 }
-      %div
-        %span С мат.ущербом
-    %td{ colspan: 2 } 12.8, 12.26
-    %td{ colspan: 2 } 12.15 ч.4, 12.16 ч.3
-    %td{ colspan: 2 } 12.7
-    %td{ colspan: 2 } 12.9
-    %td{ colspan: 2 } 12.18
-    %td{ colspan: 2 } 12.6
-    %td{ colspan: 2 } 12.23
-    %td{ colspan: 2 } 12.5 ч.3.1
-    %td{ colspan: 2 } 12.29, 12.30
-
-  %tr
-    %td.rotate-sm
-      %div
-        %span За сутки
-    %td.rotate-sm
-      %div
-        %span За месяц
-    %td.rotate-sm
-      %div
-        %span За сутки
-    %td.rotate-sm
-      %div
-        %span За месяц
-    %td.rotate-sm
-      %div
-        %span За сутки
-    %td.rotate-sm
-      %div
-        %span За месяц
-    %td.rotate-sm
-      %div
-        %span За сутки
-    %td.rotate-sm
-      %div
-        %span За месяц
-    %td.rotate-sm
-      %div
-        %span За сутки
-    %td.rotate-sm
-      %div
-        %span За месяц
-    %td.rotate-sm
-      %div
-        %span За сутки
-    %td.rotate-sm
-      %div
-        %span За месяц
-    %td.rotate-sm
-      %div
-        %span За сутки
-    %td.rotate-sm
-      %div
-        %span За месяц
-    %td.rotate-sm
-      %div
-        %span За сутки
-    %td.rotate-sm
-      %div
-        %span За месяц
-    %td.rotate-sm
-      %div
-        %span За сутки
-    %td.rotate-sm
-      %div
-        %span За месяц
-    %td.rotate-sm
-      %div
-        %span За сутки
-    %td.rotate-sm
-      %div
-        %span За месяц
-    %td.rotate-sm
-      %div
-        %span За сутки
-    %td.rotate-sm
-      %div
-        %span За месяц
-    %td.rotate-sm
-      %div
-        %span За сутки
-    %td.rotate-sm
-      %div
-        %span Всего
-    %td.rotate-sm
-      %div
-        %span За сутки
-    %td.rotate-sm
-      %div
-        %span За месяц
-
-  - @records.each do |r|
-    %tr
-      - if r.d_id == current_user.district_id || current_user.ugibdd_duty?
+.row
+  .col-md-12{ id: 'operative_data_for_day' }
+    %h2= @target_day.strftime('%d.%m.%Y')
+    
+    %table.table.table-bordered 
+      %tr
+        %td{ rowspan: 4 } Территориальные органы МВД России на районном уровне в Республике Коми
+        %td{ colspan: 8 } ДТП
+        %td{ class: 'rotate', rowspan: 4 }
+          %div
+            %span Задействовано л/с
+        %td{ colspan: 24 } Исполнение административных процедур при контроле за дорожным движением
+        %td{ class: 'rotate-big', rowspan: 3, colspan: 2 }
+          %div
+            %span Кол-во ТС пост. на спец. <br> а/стоянки за нарушение <br> ПДД в области ОБДД
+      %tr
+        %td{ colspan: 4 } За сутки
+        %td{ colspan: 4 } За месяц
+        %td{ rowspan: 2, colspan: 2 } Всего  
+        %td{ colspan: 2 } Н/с
+        %td{ colspan: 2 } Выезд на встречную
+        %td{ colspan: 2 } Неимеющ. права упр. или лиш.
+        %td{ colspan: 2 } Скорость
+        %td{ colspan: 2 } Непредост. преим. пешех.
+        %td{ colspan: 2 } Ремни безопасн.
+        %td{ colspan: 2 } Перевозка пассажир.
+        %td{ colspan: 2 } Тонировка
+        %td{ colspan: 2 } Пешеходы
+        %td{ rowspan: 2, colspan: 2 } Прочие  
+        %td{ rowspan: 2, colspan: 2 } Кол-во граждан подвергнутых админ. аресту за нарушение ПДД в области ОБДД
+      %tr
+        %td{ class: 'rotate', rowspan: 2 }
+          %div
+            %span  Всего с пострад.
+        %td{ class: 'rotate', rowspan: 2 }
+          %div
+            %span Погибло
+        %td{ class: 'rotate', rowspan: 2 }
+          %div
+            %span Ранено
+        %td{ class: 'rotate', rowspan: 2 }
+          %div
+            %span С мат.ущербом
+        %td{ class: 'rotate', rowspan: 2 }
+          %div
+            %span  Всего с пострад.
+        %td{ class: 'rotate', rowspan: 2 }
+          %div
+            %span Погибло
+        %td{ class: 'rotate', rowspan: 2 }
+          %div
+            %span Ранено
+        %td{ class: 'rotate', rowspan: 2 }
+          %div
+            %span С мат.ущербом
+        %td{ colspan: 2 } 12.8, 12.26
+        %td{ colspan: 2 } 12.15 ч.4, 12.16 ч.3
+        %td{ colspan: 2 } 12.7
+        %td{ colspan: 2 } 12.9
+        %td{ colspan: 2 } 12.18
+        %td{ colspan: 2 } 12.6
+        %td{ colspan: 2 } 12.23
+        %td{ colspan: 2 } 12.5 ч.3.1
+        %td{ colspan: 2 } 12.29, 12.30
+    
+      %tr
+        %td.rotate-sm
+          %div
+            %span За сутки
+        %td.rotate-sm
+          %div
+            %span За месяц
+        %td.rotate-sm
+          %div
+            %span За сутки
+        %td.rotate-sm
+          %div
+            %span За месяц
+        %td.rotate-sm
+          %div
+            %span За сутки
+        %td.rotate-sm
+          %div
+            %span За месяц
+        %td.rotate-sm
+          %div
+            %span За сутки
+        %td.rotate-sm
+          %div
+            %span За месяц
+        %td.rotate-sm
+          %div
+            %span За сутки
+        %td.rotate-sm
+          %div
+            %span За месяц
+        %td.rotate-sm
+          %div
+            %span За сутки
+        %td.rotate-sm
+          %div
+            %span За месяц
+        %td.rotate-sm
+          %div
+            %span За сутки
+        %td.rotate-sm
+          %div
+            %span За месяц
+        %td.rotate-sm
+          %div
+            %span За сутки
+        %td.rotate-sm
+          %div
+            %span За месяц
+        %td.rotate-sm
+          %div
+            %span За сутки
+        %td.rotate-sm
+          %div
+            %span За месяц
+        %td.rotate-sm
+          %div
+            %span За сутки
+        %td.rotate-sm
+          %div
+            %span За месяц
+        %td.rotate-sm
+          %div
+            %span За сутки
+        %td.rotate-sm
+          %div
+            %span За месяц
+        %td.rotate-sm
+          %div
+            %span За сутки
+        %td.rotate-sm
+          %div
+            %span Всего
+        %td.rotate-sm
+          %div
+            %span За сутки
+        %td.rotate-sm
+          %div
+            %span За месяц
+    
+      - @records.each do |r|
         - if r.target_day.nil?
-          %td= link_to r.short_name, new_operative_record_by_path(r.d_id, @target_day.strftime('%d%m%Y'))
+          - tr_class = 'warning'
         - else
-          %td= link_to r.short_name, edit_operative_record_path(r)
-      - else
-        %td= r.short_name
-      %td= r.registry_emergency_count
-      %td= r.dead_count
-      %td= r.perished_count
-      %td= r.adm_emergency_count
-      %td
-      %td
-      %td
-      %td
-      %td= r.personal_count
-      %td= r.all_violations_count
-      %td
-      %td= r.drunk_count
-      %td
-      %td= r.opposite_count
-      %td
-      %td= r.not_having_count
-      %td
-      %td= r.speed_count
-      %td
-      %td= r.failure_to_footer_count 
-      %td
-      %td= r.belts_count
-      %td
-      %td= r.passengers_count
-      %td
-      %td= r.tinting_count
-      %td
-      %td= r.footer_count
-      %td
-      %td
-      %td
-      %td= r.arested_day_count
-      %td= r.arested_all_count
-      %td= r.parking_count
-      %td
+          - tr_calss = ''
+        %tr{ class: "#{tr_class}" }
+          - if r.d_id == current_user.district_id || current_user.ugibdd_duty?
+            - if r.target_day.nil?
+              %td= link_to r.short_name, new_operative_record_by_path(r.d_id, @target_day.strftime('%d%m%Y'))
+            - else
+              %td= link_to r.short_name, edit_operative_record_path(r)
+          - else
+            %td= r.short_name
+          %td= r.registry_emergency_count
+          %td= r.dead_count
+          %td= r.perished_count
+          %td= r.adm_emergency_count
+          %td
+          %td
+          %td
+          %td
+          %td= r.personal_count
+          %td= r.all_violations_count
+          %td
+          %td= r.drunk_count
+          %td
+          %td= r.opposite_count
+          %td
+          %td= r.not_having_count
+          %td
+          %td= r.speed_count
+          %td
+          %td= r.failure_to_footer_count 
+          %td
+          %td= r.belts_count
+          %td
+          %td= r.passengers_count
+          %td
+          %td= r.tinting_count
+          %td
+          %td= r.footer_count
+          %td
+          %td
+          %td
+          %td= r.arested_day_count
+          %td= r.arested_all_count
+          %td= r.parking_count
+          %td

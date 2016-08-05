@@ -11,6 +11,9 @@ class OperativeRecordsController < ApplicationController
     else
       district_id = current_user.district_id
     end
+    if district_id = 0
+      district_id = 1
+    end
     @district = District.find(district_id)
     @operative_records = OperativeRecord.where(district_id: district_id).order('target_day desc')
   end
@@ -27,7 +30,7 @@ class OperativeRecordsController < ApplicationController
 
   def edit
     @districts = District.all
-    @saved_operative_records = OperativeRecord.where(district_id: current_user.district_id).order('target_day desc').limit(31).reverse
+#    @saved_operative_records = OperativeRecord.where(district_id: current_user.district_id).order('target_day desc').limit(31).reverse
   end
 
   def create
@@ -37,7 +40,8 @@ class OperativeRecordsController < ApplicationController
       @operative_record.district_id = current_user.district_id
     end
     if @operative_record.save
-      pjax_redirect_to operative_records_path
+      #pjax_redirect_to operative_records_path
+      pjax_redirect_to all_operative_records_path(@operative_record.target_day.strftime("%d%m%Y"))
     else
 #      @districts = District.all
 #      @saved_operative_records = OperativeRecord.where(district_id: current_user.district_id).order('target_day desc').limit(31).reverse
@@ -51,9 +55,12 @@ class OperativeRecordsController < ApplicationController
   def update
     @operative_record = OperativeRecord.find(params[:id])
     if @operative_record.update(operative_record_params)
-      pjax_redirect_to operative_records_path
+      pjax_redirect_to all_operative_records_path(@operative_record.target_day.strftime("%d%m%Y"))
     else
-      render 'edit'
+      @operative_record.valid?
+      @errors = @operative_record.errors
+      render json: @errors
+      #render 'edit'
     end
   end
 

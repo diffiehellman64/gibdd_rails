@@ -1,9 +1,18 @@
 ru:
   devise:
+    registrations:
+      user:
+        signed_in: 'Регистрация прошла успешно'
     sessions:
       user:
         signed_in: 'Вход выполнен!'
         signed_out: 'Выход выполнен!'
+    failure:
+      already_authenticated: 'Вы уже авторизованы'
+      user:
+        not_found_in_database: 'Пользователя не существует'
+  errors:
+    forbidden: 'Отказ в доступе'
   views:
     operative_records:
       new:
