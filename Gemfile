@@ -13,6 +13,15 @@ gem 'devise'
 gem 'cancancan'
 gem 'rolify'
 
+gem 'ruby-oci8'
+
+gem 'roo'
+
+gem 'remotipart'
+#gem 'roo-xls'
+
+gem 'paper_trail'
+
 # gem 'jquery-validation-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

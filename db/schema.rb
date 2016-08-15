@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160801175846) do
+ActiveRecord::Schema.define(version: 20160815193831) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,18 +20,33 @@ ActiveRecord::Schema.define(version: 20160801175846) do
     t.integer  "code",       null: false
     t.string   "name",       null: false
     t.string   "short_name", null: false
+    t.string   "alias_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_index "districts", ["code"], name: "index_districts_on_code", unique: true, using: :btree
+
   create_table "operative_records", force: :cascade do |t|
-    t.integer  "user_id",                  default: 0, null: false
-    t.integer  "district_id",                          null: false
-    t.date     "target_day",                           null: false
+    t.integer  "user_id",                             default: 0, null: false
+    t.integer  "district_id",                                     null: false
+    t.date     "target_day",                                      null: false
     t.integer  "personal_count"
-    t.integer  "registry_emergency_count"
+    t.integer  "reg_emergency_count"
     t.integer  "dead_count"
     t.integer  "perished_count"
+    t.integer  "reg_emergency_child_count"
+    t.integer  "dead_child_count"
+    t.integer  "perished_child_count"
+    t.integer  "reg_emergency_drunk_count"
+    t.integer  "dead_drunk_count"
+    t.integer  "perished_drunk_count"
+    t.integer  "reg_emergency_footer_count"
+    t.integer  "dead_footer_count"
+    t.integer  "perished_footer_count"
+    t.integer  "reg_emergency_footer_on_zebra_count"
+    t.integer  "dead_footer_on_zebra_count"
+    t.integer  "perished_footer_on_zebra_count"
     t.integer  "adm_emergency_count"
     t.integer  "all_violations_count"
     t.integer  "drunk_count"
@@ -43,21 +58,27 @@ ActiveRecord::Schema.define(version: 20160801175846) do
     t.integer  "passengers_count"
     t.integer  "tinting_count"
     t.integer  "footer_count"
-    t.integer  "arested_day_count"
-    t.integer  "arested_all_count"
+    t.integer  "arrested_day_count"
+    t.integer  "arrested_all_count"
     t.integer  "parking_count"
     t.integer  "article_264_1_count"
     t.integer  "oop_count"
+    t.integer  "not_trafic_oop_count"
     t.integer  "solved_crime_count"
     t.integer  "stealing_autos"
     t.integer  "theft_autos"
-    t.integer  "stealing_sloved"
-    t.integer  "theft_sloved"
-    t.integer  "stealing_sloved_gibdd"
-    t.integer  "theft_sloved_gibdd"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.integer  "stealing_solved"
+    t.integer  "theft_solved"
+    t.integer  "stealing_solved_gibdd"
+    t.integer  "theft_solved_gibdd"
+    t.string   "source"
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
   end
+
+  add_index "operative_records", ["district_id"], name: "index_operative_records_on_district_id", using: :btree
+  add_index "operative_records", ["target_day"], name: "index_operative_records_on_target_day", using: :btree
+  add_index "operative_records", ["user_id"], name: "index_operative_records_on_user_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
@@ -99,6 +120,17 @@ ActiveRecord::Schema.define(version: 20160801175846) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
+
+  create_table "versions", force: :cascade do |t|
+    t.string   "item_type",  null: false
+    t.integer  "item_id",    null: false
+    t.string   "event",      null: false
+    t.string   "whodunnit"
+    t.text     "object"
+    t.datetime "created_at"
+  end
+
+  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
   add_foreign_key "operative_records", "users"
 end

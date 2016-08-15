@@ -2,19 +2,50 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#target_day_selector td.disabled {
-  font-color: red;
+#target_day_selector {
+  position: fixed;
+  z-index: 9999;
+  background-color: white;
+  opacity: 0.5;
+  padding: 15px;
+  border: 1px solid gray;
+  width: 300px;
+  right: 9%;
 }
 
-table {
-  font-size: 10px;
+#refresh_buttons {
+  margin: 15px 0;
+}
+
+#target_day_selector:hover {
+  opacity: 1;
+}
+#operative_data_table.table-bordered > tbody > tr > td {
+  font-size: 9px;
+  vertical-align: middle;
+  padding: 2px 10px;
+}
+
+#operative_data_table.table-bordered > tbody > tr > td.big-font {
+  font-size: 14px;
+  font-weight: bold;
+  text-align: right;
+  width: 300px;
+}
+
+#operative_data_table.table-bordered > tbody > tr > td.big-font-header {
+  font-size: 16px;
+  font-weight: bold;
+  width: 300px;
+}
+
+#emergency-table > tbody > tr > td {
   vertical-align: middle;
 }
 
 td {
   text-align: center;
   vertical-align: middle;
-//  max-width: 40px;
 }
 
 .table-bordered > tbody > tr > td {
@@ -22,27 +53,24 @@ td {
 }
 
 td.rotate {
-  /* Something you can count on */
-  height: 160px;
+  height: 90px;
   white-space: nowrap;
   vertical-align: middle;
 }
 
 td.rotate > div {
   transform: 
-    /* Magic Numbers */
-    translate(0, 100px)
-    /* 45 is really 360 - 45 */
+    translate(0, 30px)
     rotate(270deg);
   width: 15px;
 }
+
 td.rotate > div > span {
   padding: 5px 0px;
 }
 
 td.rotate-big {
-  /* Something you can count on */
-  height: 160px;
+  height: 50px;
   white-space: nowrap;
   vertical-align: middle;
   width: 5px;
@@ -50,9 +78,7 @@ td.rotate-big {
 
 td.rotate-big > div {
   transform:
-    /* Magic Numbers */
-    translate(0, 130px)
-    /* 45 is really 360 - 45 */
+    translate(0, 40px)
     rotate(270deg);
   width: 45px;
 }
@@ -65,8 +91,7 @@ tbody > tr > td.rotate-sm {
 }
 
 td.rotate-sm {
-  /* Something you can count on */
-  height: 85px;
+  height: 60px;
   white-space: nowrap;
   vertical-align: middle;
   width: 5px;
@@ -74,9 +99,7 @@ td.rotate-sm {
 
 td.rotate-sm > div {
   transform:
-    /* Magic Numbers */
-    translate(0, 50px)
-    /* 45 is really 360 - 45 */
+    translate(0, 10px)
     rotate(270deg);
   width: 15px;
 }

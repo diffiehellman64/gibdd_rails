@@ -10,18 +10,25 @@
     %div{ class: 'collapse navbar-collapse', id: 'bs-example-navbar-collapse-1' }
       %ul.nav.navbar-nav
         %li.dropdown
-          = link_to(main_page_index_path, class: 'dropdown-toggle', 'data-toggle': 'dropdown', role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false') do
+          = link_to(main_page_index_path, class: 'dropdown-toggle', 'data-toggle': 'dropdown', 
+                                          role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false') do
             Оперативные сведения
             %span.caret
           %ul.dropdown-menu
-            %li= link_to 'Оперативные сведения своего подразделения', operative_records_path
-            %li= link_to 'Оперативные сведения по Республике Коми', all_operative_records_path(Date.yesterday.strftime('%d%m%Y'))
-            %li= link_to 'Передать данные за сутки', new_operative_record_path
-
-- if user_signed_in?
-  = current_user.username
-  (
-  = link_to 'Выйти', destroy_user_session_path, method: :delete
-  )
-- else
-  = link_to 'Войти', new_user_session_path
+            %li= link_to 'Оперативные по Республике Коми', all_operative_records_path(Date.yesterday.strftime('%d%m%Y'))
+        %li.dropdown
+      %ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
+          %li.dropdown
+            = link_to(main_page_index_path, class: 'dropdown-toggle', 'data-toggle': 'dropdown', 
+                                            role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false') do
+              .glyphicon.glyphicon-user
+              = "Вы вошли как #{current_user.username}"
+              %span.caret
+            %ul.dropdown-menu
+              %li= link_to 'Выйти', destroy_user_session_path, method: :delete
+        - else
+          %li
+            = link_to new_user_session_path do
+              %span.glyphicon.glyphicon-log-in
+              Войти

@@ -96,6 +96,10 @@ GEM
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
     orm_adapter (0.5.0)
+    paper_trail (5.2.0)
+      activerecord (>= 3.0, < 6.0)
+      activesupport (>= 3.0, < 6.0)
+      request_store (~> 1.1)
     pg (0.18.4)
     pkg-config (1.1.7)
     postgresql (1.0.0)
@@ -133,9 +137,16 @@ GEM
     rake (11.2.2)
     rdoc (4.2.2)
       json (~> 1.4)
+    remotipart (1.2.1)
+    request_store (1.3.1)
     responders (2.2.0)
       railties (>= 4.2.0, < 5.1)
     rolify (5.1.0)
+    roo (2.4.0)
+      nokogiri (~> 1)
+      rubyzip (~> 1.1, < 2.0.0)
+    ruby-oci8 (2.2.2)
+    rubyzip (1.2.0)
     sass (3.4.22)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -187,10 +198,14 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   momentjs-rails
+  paper_trail
   postgresql
   rack-pjax
   rails (= 4.2.6)
+  remotipart
   rolify
+  roo
+  ruby-oci8
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   simple_form

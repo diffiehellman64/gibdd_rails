@@ -146,4 +146,35 @@ SimpleForm.setup do |config|
     date: :multi_select,
     time: :multi_select
   }
+
+  module SimpleForm
+    module Inputs
+      class FileInput < Base
+        def input(wrapper_options)
+          idf = "#{lookup_model_names.join("_")}_#{reflection_or_attribute_name}"
+          input_html_options[:style] ||= 'display:none;'
+          icon = tag(:span, class: 'glyphicon glyphicon-folder-open')
+          text = content_tag(:text, "Browse ")
+          # field for display file_name
+          field_id = "filename_#{idf}"
+          field = tag(:input, id: "#{field_id}", class: 'form-control', type: 'text', 'disabled': 'true')
+          button = template.content_tag(:button, type: 'button', class: 'btn btn-primary') do          
+            text +
+            icon
+          end
+          input_group_btn = template.content_tag(:div, class: 'input-group-btn', onclick: "$('input[id=#{idf}]').click();") do
+            button
+          end
+          input_group = template.content_tag(:div, class: 'input-group') do
+            input_group_btn + field
+          end
+          script = template.content_tag(:script, type: 'text/javascript') do
+            "$('input[id=#{idf}]').change(function() { s = $(this).val(); $('##{field_id}').val(s.slice(s.lastIndexOf('\\\\')+1)); });".html_safe
+          end
+          @builder.file_field(attribute_name, input_html_options) + input_group + script
+        end
+      end
+    end
+  end
+
 end

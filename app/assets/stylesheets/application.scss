@@ -1,8 +1,30 @@
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+//= require_tree .
+//= require_self
+
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
 
 #body {
   padding: 0 15px;
+}
+
+.message {
+  position: fixed;
+  z-index: 1000;
+  opacity: 1;
+  right: 0;
+  margin-right: 20px;
+  max-width: 30%;
+  margin-top: 10px;
+  bottom: 10px;
+}
+
+.message-item:hover {
+  opacity: 0.3;
+}
+
+.dropdown-menu {
+  z-index: 1001;
 }

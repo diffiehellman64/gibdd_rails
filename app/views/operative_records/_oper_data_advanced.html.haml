@@ -1,0 +1,206 @@
+.row
+  .col-md-12{ id: 'operative_data_for_day' }
+    %h2= "Оперативные сведения по Республике Коми за #{@target_day.strftime('%d.%m.%Y')} (с нарастающим показателем за месяц)"
+    %table.table.table-bordered.table-condensed{ id: 'operative_data_table' }
+      %tr
+        %td.big-font-header{ rowspan: 4 } Территориальные органы МВД России на районном уровне в Республике Коми
+        %td{ colspan: 8 } Дорожно-транспортные происшествия
+        %td.success{ class: 'rotate', rowspan: 4 }
+          %div
+            %span Задействовано л/с
+        %td{ colspan: 24 } Исполнение административных процедур при контроле за дорожным движением
+        %td{ class: 'rotate-big', rowspan: 3, colspan: 2 }
+          %div
+            %span Кол-во ТС пост. на спец. <br> а/стоянки за нарушение <br> ПДД в области ОБДД
+      %tr
+        %td{ colspan: 4 } За сутки
+        %td.warning{ colspan: 4 } За месяц
+        %td{ rowspan: 2, colspan: 2 } Всего  
+        %td{ colspan: 2 } Н/с
+        %td{ colspan: 2 } Выезд на встречную
+        %td{ colspan: 2 } Неимеющ. права упр. или лиш.
+        %td{ colspan: 2 } Скорость
+        %td{ colspan: 2 } Непредост. преим. пешех.
+        %td{ colspan: 2 } Ремни безопасн.
+        %td{ colspan: 2 } Перевозка пассажир.
+        %td{ colspan: 2 } Тонировка
+        %td{ colspan: 2 } Пешеходы
+        %td{ rowspan: 2, colspan: 2 } Прочие  
+        %td{ rowspan: 2, colspan: 2 } Кол-во граждан подвергнутых админ. аресту за нарушение ПДД в области ОБДД
+      %tr
+        %td{ class: 'rotate', rowspan: 2 }
+          %div
+            %span  Всего с пострад.
+        %td{ class: 'rotate', rowspan: 2 }
+          %div
+            %span Погибло
+        %td{ class: 'rotate', rowspan: 2 }
+          %div
+            %span Ранено
+        %td{ class: 'rotate', rowspan: 2 }
+          %div
+            %span С мат.ущербом
+        %td{ class: 'rotate warning', rowspan: 2 }
+          %div
+            %span  Всего с пострад.
+        %td{ class: 'rotate warning', rowspan: 2 }
+          %div
+            %span Погибло
+        %td{ class: 'rotate warning', rowspan: 2 }
+          %div
+            %span Ранено
+        %td{ class: 'rotate warning', rowspan: 2 }
+          %div
+            %span С мат.ущербом
+        %td{ colspan: 2 } 12.8, 12.26
+        %td{ colspan: 2 } 12.15 ч.4, 12.16 ч.3
+        %td{ colspan: 2 } 12.7
+        %td{ colspan: 2 } 12.9
+        %td{ colspan: 2 } 12.18
+        %td{ colspan: 2 } 12.6
+        %td{ colspan: 2 } 12.23
+        %td{ colspan: 2 } 12.5 ч.3.1
+        %td{ colspan: 2 } 12.29, 12.30
+    
+      %tr
+        %td.rotate-sm
+          %div
+            %span За сутки
+        %td.rotate-sm.warning
+          %div
+            %span За месяц
+        %td.rotate-sm
+          %div
+            %span За сутки
+        %td.rotate-sm.warning
+          %div
+            %span За месяц
+        %td.rotate-sm
+          %div
+            %span За сутки
+        %td.rotate-sm.warning
+          %div
+            %span За месяц
+        %td.rotate-sm
+          %div
+            %span За сутки
+        %td.rotate-sm.warning
+          %div
+            %span За месяц
+        %td.rotate-sm
+          %div
+            %span За сутки
+        %td.rotate-sm.warning
+          %div
+            %span За месяц
+        %td.rotate-sm
+          %div
+            %span За сутки
+        %td.rotate-sm.warning
+          %div
+            %span За месяц
+        %td.rotate-sm
+          %div
+            %span За сутки
+        %td.rotate-sm.warning
+          %div
+            %span За месяц
+        %td.rotate-sm
+          %div
+            %span За сутки
+        %td.rotate-sm.warning
+          %div
+            %span За месяц
+        %td.rotate-sm
+          %div
+            %span За сутки
+        %td.rotate-sm.warning
+          %div
+            %span За месяц
+        %td.rotate-sm
+          %div
+            %span За сутки
+        %td.rotate-sm.warning
+          %div
+            %span За месяц
+        %td.rotate-sm
+          %div
+            %span За сутки
+        %td.rotate-sm.warning
+          %div
+            %span За месяц
+        %td.rotate-sm
+          %div
+            %span За сутки
+        %td.rotate-sm
+          %div
+            %span Всего
+        %td.rotate-sm
+          %div
+            %span За сутки
+        %td.rotate-sm.warning
+          %div
+            %span За месяц
+   
+
+      - user_district_id = current_user.district_id
+      - ugibdd_duty = current_user.ugibdd_duty? 
+      - @records.each do |r|
+        - if r.target_day.nil?
+          - tr_class = 'danger'
+        - else
+          - tr_calss = ''
+        %tr{ class: "#{tr_class}", id: "row-district-#{r.d_id}" }
+          - if r.d_id == user_district_id || ugibdd_duty
+            - if r.target_day.nil?
+              %td.big-font= link_to r.short_name, new_operative_record_by_path(r.d_id, @target_day.strftime('%d%m%Y'))
+            - else
+              %td.big-font= link_to r.short_name, edit_operative_record_path(r)
+          - else
+            %td.big-font= r.short_name
+          %td= r.reg_emergency_count
+          %td= r.dead_count
+          %td= r.perished_count
+          %td= r.adm_emergency_count
+          %td.warning= r.reg_emergency_month
+          %td.warning= r.dead_month
+          %td.warning= r.perished_month
+          %td.warning= r.adm_emergency_month
+          %td.success= r.personal_count
+          %td= r.all_violations_count
+          %td.warning= r.all_violations_month
+          %td= r.drunk_count
+          %td.warning= r.drunk_month
+          %td= r.opposite_count
+          %td.warning= r.opposite_month
+          %td= r.not_having_count
+          %td.warning= r.not_having_month
+          %td= r.speed_count
+          %td.warning= r.speed_month
+          %td= r.failure_to_footer_count 
+          %td.warning= r.failure_to_footer_month
+          %td= r.belts_count
+          %td.warning= r.belts_month
+          %td= r.passengers_count
+          %td.warning= r.passengers_month
+          %td= r.tinting_count
+          %td.warning= r.tinting_month
+          %td= r.footer_count
+          %td.warning= r.footer_month
+          %td= r.other
+          %td.warning= r.other_month
+          %td= r.arrested_day_count
+          %td= r.arrested_all_count
+          %td= r.parking_count
+          %td.warning= r.parking_month
+      %tr.info
+        %td.big-font Всего по Республике 
+        %td= @sum_registry_emergency_day
+        %td= @sum_dead_day
+        %td= @sum_perished_day
+        %td= @sum_adm_emergency_day
+        %td= @sum_registry_emergency_month
+        %td= @sum_dead_month
+        %td= @sum_perished_month
+        %td= @sum_adm_emergency_month
+        %td= @sum_personal_count

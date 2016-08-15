@@ -1,3 +1,5 @@
 tmp/*
 *.cache
 *.log
+pass_*
+public/fis_operative_data/*

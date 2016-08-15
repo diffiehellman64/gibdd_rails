@@ -1,0 +1,132 @@
+%h2 Дорожно-транспортные происшествия
+%table.table.table-bordered.table-condensed{ id: 'emergency-table' }
+  %tr
+    %td{ rowspan: 3 }
+    %td{ colspan: 3 } ДТП
+    %td{ colspan: 4 } ПОГИБЛО
+    %td{ colspan: 3 } РАНЕНО
+    %td{ rowspan: 3 } ТЯЖЕСТЬ
+    %td{ colspan: 3 } С МАТЕРИАЛЬНЫМ <br>  УЩЕРБОМ
+  %tr
+    %td{ rowspan: 2 } За сутки
+    %td{ rowspan: 2 } С начала <br> месяца
+    %td{ rowspan: 2 } С начала <br> года
+    %td{ rowspan: 2 } За сутки
+    %td{ rowspan: 2 } С начала <br> месяца
+    %td{ colspan: 2 } С начала года
+    %td{ rowspan: 2 } За сутки
+    %td{ rowspan: 2 } С начала <br> месяца
+    %td{ rowspan: 2 } С начала <br> года
+    %td{ rowspan: 2 } За сутки
+    %td{ rowspan: 2 } С начала <br> месяца
+    %td{ rowspan: 2 } С начала <br> года
+  %tr
+    %td всего
+    %td В т.ч. от 8 <br> до 30 <br> суток
+  %tr
+    %td ТГ
+    %td= @calc_em_data['reg_emergency_day']
+    %td= @sum_reg_emergency_month
+    %td= @sum_reg_emergency_year
+    %td= @sum_dead_day
+    %td= @sum_dead_month
+    %td= @sum_dead_year
+    %td
+    %td= @sum_perished_day
+    %td= @sum_perished_month
+    %td= @sum_perished_year
+    %td= @hard.round(1)
+    %td= @sum_adm_emergency_day
+    %td= @sum_adm_emergency_month
+    %td= @sum_adm_emergency_year
+  %tr
+    %td АППГ
+    %td= @appg_day[0].reg_emergency_count
+    %td= @appg_month[0].reg_emergency_count
+    %td= @appg_year[0].reg_emergency_count
+    %td= @appg_day[0].dead_count
+    %td= @appg_month[0].dead_count
+    %td= @appg_year[0].dead_count
+    %td
+    %td= @appg_day[0].perished_count
+    %td= @appg_month[0].perished_count
+    %td= @appg_year[0].perished_count
+    %td= @hard_appg.round(1)
+    %td= @appg_day[0].adm_emergency_count
+    %td= @appg_month[0].adm_emergency_count
+    %td= @appg_year[0].adm_emergency_count
+  %tr
+    %td
+    %td{ colspan: 11 } С пострадавшими детьми и подростками в возрасте до 16 лет
+    %td.info{ colspan: 3, rowspan: 9 }
+  %tr
+    %td ТГ
+    %td= @sum_reg_emergency_child_day
+    %td= @sum_reg_emergency_child_month
+    %td= @sum_reg_emergency_child_year
+    %td= @sum_dead_child_day
+    %td= @sum_dead_child_month
+    %td= @sum_dead_child_year
+    %td
+    %td= @sum_perished_child_day
+    %td= @sum_perished_child_month
+    %td= @sum_perished_child_year
+    %td
+  %tr
+    %td
+    %td{ colspan: 11 } По вине водителей управлявших т/с в состоянии опьянения
+  %tr
+    %td ТГ
+    %td= @sum_reg_emergency_drunk_day
+    %td= @sum_reg_emergency_drunk_month
+    %td= @sum_reg_emergency_drunk_year
+    %td
+    %td
+    %td
+    %td
+    %td
+    %td
+    %td
+    %td
+  %tr
+    %td
+    %td{ colspan: 11 } С участием пешеходов
+  %tr
+    %td ТГ
+    %td
+    %td
+    %td
+    %td
+    %td
+    %td
+    %td
+    %td
+    %td
+    %td
+    %td
+  %tr
+    %td
+    %td{ colspan: 11 } Наезды на пешеходов на пешеходных переходах
+  %tr
+    %td ТГ
+    %td= @sum_reg_emergency_footer_on_zebra_day
+    %td= @sum_reg_emergency_footer_on_zebra_month
+    %td= @sum_reg_emergency_footer_on_zebra_year
+    %td
+    %td
+    %td
+    %td
+    %td
+    %td
+    %td
+    %td
+  %tr
+    %td 
+    %td.info{ colspan: 2 }
+    %td
+    %td.info{ colspan: 2 }
+    %td
+    %td
+    %td.info{ colspan: 2 }
+    %td
+    %td

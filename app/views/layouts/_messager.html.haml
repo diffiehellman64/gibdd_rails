@@ -1,8 +1,11 @@
-%div.message{ id: 'application-messager' }
-  - flash.each do |name, msg|
-    - if name == 'notice' then name = 'info' end
-    - if name == 'alert' then name = 'warning' end
-    .message-item.alert.alert-dismissible{ 'data-dismiss': 'alert', role: 'alert', class: "alert-#{name}" }
-      %button.close{ type: 'button', 'data-dismiss': 'alert', 'aria-label': 'Close' }
-        %span{ 'aria-hidden': 'true' } &times;
-      = raw msg
+.row
+  .col-md-9
+  .col-md-3
+    .message{ id: 'application-messager' }
+      - flash.each do |name, msg|
+        - if name == 'notice' then name = 'info' end
+        - if name == 'alert' then name = 'warning' end
+        .message-item.alert.alert-dismissible{ 'data-dismiss': 'alert', role: 'alert', class: "alert-#{name}" }
+          %button.close{ type: 'button', 'data-dismiss': 'alert', 'aria-label': 'Close' }
+            %span{ 'aria-hidden': 'true' } &times;
+          = raw msg
